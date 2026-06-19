@@ -19,4 +19,10 @@ def load_environment():
 
     rubric = vf.Rubric(funcs=[check_ans])
 
-    return vf.SingleTurnEnv(dataset=ds["train"], eval_dataset=ds["test"], rubric=rubric)
+    system_prompt = (
+        "I'll be giving you math problems to solve. "
+        "At the end of your response, give the final answer after ####. "
+        "Example: #### 42"
+    )
+
+    return vf.SingleTurnEnv(dataset=ds["train"], eval_dataset=ds["test"], rubric=rubric, system_prompt=system_prompt)
