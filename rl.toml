@@ -41,7 +41,6 @@ name = "gsm8k-eval"
 
 [orchestrator.renderer]
 name = "default"
-reasoning_parser = "think"
 
 [inference.model]
 max_model_len = 2048
