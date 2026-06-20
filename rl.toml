@@ -1,15 +1,15 @@
-max_steps = 2000
+max_steps = 1500
 
 [wandb]
 project = "gsm8k-rl"
-name = "gsm8k-run-1"
+name = "gsm8k-run-2"
 
 [deployment]
 num_train_gpus = 1
 num_infer_gpus = 1
 
 [model]
-name = "Qwen/Qwen3-1.7B"
+name = "Qwen/Qwen2.5-0.5B-Instruct"
 
 [trainer.model]
 impl = "auto"
