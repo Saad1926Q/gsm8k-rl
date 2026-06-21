@@ -2,7 +2,7 @@ max_steps = 1500
 
 [wandb]
 project = "gsm8k-rl"
-name = "gsm8k-run-2"
+name = "gsm8k-run-3"
 
 [deployment]
 num_train_gpus = 1
@@ -22,11 +22,12 @@ rank = 32
 alpha = 64
 
 [trainer.optim]
-lr = 1e-5
+lr = 5e-6
+max_norm = 0.5
 
 [orchestrator]
 batch_size = 64
-group_size = 8
+group_size = 16
 seq_len = 2048
 
 [[orchestrator.train.env]]
