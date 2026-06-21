@@ -1,21 +1,19 @@
 # gsm8k
 
-> Replace the placeholders below, then remove this callout.
-
 ### Overview
 - **Environment ID**: `gsm8k`
-- **Short description**: <one-sentence description>
-- **Tags**: <comma-separated tags>
+- **Short description**: Grade school math problem solving using exact match on the final numeric answer
+- **Tags**: `gsm8k`, `math`, `train`, `eval`
 
 ### Datasets
-- **Primary dataset(s)**: <name(s) and brief description>
-- **Source links**: <links>
-- **Split sizes**: <train/eval counts>
+- **Primary dataset(s)**: GSM8K - 8.5K grade school math word problems
+- **Source links**: https://huggingface.co/datasets/openai/gsm8k
+- **Split sizes**: 7473 train / 1319 test
 
 ### Task
-- **Type**: <single-turn | multi-turn | tool use>
-- **Output format expectations (optional)**: <e.g., plain text, XML tags, JSON schema>
-- **Rubric overview**: <briefly list reward functions and key metrics>
+- **Type**: single-turn
+- **Output format expectations**: Step-by-step reasoning followed by the final answer after `####`. Example: `To solve 2+2, we add the numbers together to get 4. #### 4`
+- **Rubric overview**: Exact match on the integer answer extracted after `####`. Returns 1.0 for correct, 0.0 for incorrect or unparseable.
 
 ### Quickstart
 Run an evaluation with default settings:
@@ -24,28 +22,8 @@ Run an evaluation with default settings:
 prime eval run gsm8k
 ```
 
-Configure model and sampling:
-
-```bash
-prime eval run gsm8k   -m gpt-4.1-mini   -n 20 -r 3 -t 1024 -T 0.7   -a '{"key": "value"}'  # env-specific args as JSON
-```
-
-Notes:
-- Use `-a` / `--env-args` to pass environment-specific configuration as a JSON object.
-
-### Environment Arguments
-Document any supported environment arguments and their meaning. Example:
-
-| Arg | Type | Default | Description |
-| --- | ---- | ------- | ----------- |
-| `foo` | str | `"bar"` | What this controls |
-| `max_examples` | int | `-1` | Limit on dataset size (use -1 for all) |
-
 ### Metrics
-Summarize key metrics your rubric emits and how they’re interpreted.
 
 | Metric | Meaning |
 | ------ | ------- |
-| `reward` | Main scalar reward (weighted sum of criteria) |
-| `accuracy` | Exact match on target answer |
-
+| `reward` | 1.0 if final answer matches ground truth, 0.0 otherwise |
